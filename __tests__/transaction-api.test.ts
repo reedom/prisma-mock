@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import createPrismaClient from "../src";
+import createPrismaClient from "./createPrismaClient"
 
 describe("prisma.$transaction", () => {
   const data = {
@@ -19,19 +19,18 @@ describe("prisma.$transaction", () => {
   };
 
   test("gets the values from $transaction", async () => {
-    const client = createPrismaClient(data);
-
+    const client = await createPrismaClient(data);
     const [henks, totalUsers] = await client.$transaction([
       client.user.findMany({ where: { name: { contains: "Henk" } } }),
       client.user.count(),
     ]);
-  
+
     expect(henks[0].accountId).toEqual(1);
     expect(totalUsers).toEqual(2);
   });
 
   test("interactive failed", async () => {
-    const client = createPrismaClient(data);
+    const client = await createPrismaClient(data);
     let failed = false;
 
     try {
@@ -55,7 +54,7 @@ describe("prisma.$transaction", () => {
   })
 
   test("interactive succeeded", async () => {
-    const client = createPrismaClient(data);
+    const client = await createPrismaClient(data);
 
     const result = await client.$transaction(async tx => {
       tx.user.create({ data: {
