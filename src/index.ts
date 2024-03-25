@@ -71,6 +71,18 @@ export type MockPrismaOptions = {
   // data?: any
 }
 
+class PrismaMockController {
+  private _reset?: () => void
+
+  onReset(cb: () => void) {
+    this._reset = cb;
+  }
+
+  resetData() {
+    this._reset?.call(this);
+  }
+}
+
 const createPrismaMock = <P>(
   client: ReturnType<typeof mockDeep<P>>, {
     data = {},
@@ -78,12 +90,18 @@ const createPrismaMock = <P>(
     options = {
       caseInsensitive: false,
     },
+    controller,
   }: {
     data?: PrismaMockData<P>,
     datamodel?: Prisma.DMMF.Datamodel,
+    controller?: PrismaMockController,
     options?: MockPrismaOptions,
   } = {}): P => {
-  const manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
+  let manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
+
+  const resetData = () => {
+    manyToManyData = {};
+  }
 
   // let data = options.data || {}
   // const datamodel = options.datamodel || Prisma.dmmf.datamodel
@@ -92,6 +110,11 @@ const createPrismaMock = <P>(
   // let client = {} as P
 
   ResetDefaults()
+
+  controller?.onReset(() => {
+    resetData();
+    ResetDefaults()
+  });
 
   const getCamelCase = (name: any) => {
     return name.substr(0, 1).toLowerCase() + name.substr(1)
