@@ -2,7 +2,8 @@
 
 import { spawn } from "cross-spawn"
 import { PrismaClient } from "@prisma/client"
-import createPrismaMock from "../src/"
+import { mockDeep } from "jest-mock-extended"
+import createPrismaMock, { MockPrismaOptions } from "../src/"
 
 
 const reset = async () => await new Promise((res, rej) => {
@@ -25,11 +26,11 @@ const push = async () => await new Promise((res, rej) => {
   )
 })
 
-export default async function createPrismaClient(data?: any, options?: any) {
+export default async function createPrismaClient(data?: any, options?: MockPrismaOptions) {
 
   const isReal = process.env.PROVIDER === "postgresql"
 
-  let client = isReal ? new PrismaClient() : createPrismaMock<PrismaClient>({}, undefined, undefined, options)
+  let client = isReal ? new PrismaClient() : createPrismaMock<PrismaClient>(mockDeep(), { options })
 
   if (isReal) {
 
