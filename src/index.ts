@@ -1,16 +1,10 @@
 import { Prisma } from "@prisma/client"
-import { mockDeep as mockDeepRef } from "./@types"
+import { mockDeep } from "jest-mock-extended"
 import HandleDefault, { ResetDefaults } from "./defaults"
 import { shallowCompare } from "./utils/shallowCompare"
 import { deepEqual } from "./utils/deepEqual"
 import { deepCopy } from "./utils/deepCopy"
 import getNestedValue from "./utils/getNestedValue"
-
-let mockDeep: typeof mockDeepRef;
-
-export function initPrismaMockLibrary(args: { mockDeep: typeof mockDeepRef }) {
-  mockDeep = args.mockDeep
-}
 
 type UnwrapPromise<P extends any> = P extends Promise<infer R> ? R : P
 
