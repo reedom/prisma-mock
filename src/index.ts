@@ -71,16 +71,9 @@ export type MockPrismaOptions = {
   // data?: any
 }
 
-class PrismaMockController {
-  private _reset?: () => void
-
-  onReset(cb: () => void) {
-    this._reset = cb;
-  }
-
-  resetData() {
-    this._reset?.call(this);
-  }
+export type PrismaMock<P> = P & {
+  $getInternalState: () => any,
+  $reset: () => void,
 }
 
 const createPrismaMock = <P>(
@@ -90,18 +83,12 @@ const createPrismaMock = <P>(
     options = {
       caseInsensitive: false,
     },
-    controller,
   }: {
     data?: PrismaMockData<P>,
     datamodel?: Prisma.DMMF.Datamodel,
-    controller?: PrismaMockController,
     options?: MockPrismaOptions,
-  } = {}): P => {
+  } = {}): PrismaMock<P> => {
   let manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
-
-  const resetData = () => {
-    manyToManyData = {};
-  }
 
   // let data = options.data || {}
   // const datamodel = options.datamodel || Prisma.dmmf.datamodel
@@ -110,11 +97,6 @@ const createPrismaMock = <P>(
   // let client = {} as P
 
   ResetDefaults()
-
-  controller?.onReset(() => {
-    resetData();
-    ResetDefaults()
-  });
 
   const getCamelCase = (name: any) => {
     return name.substr(0, 1).toLowerCase() + name.substr(1)
@@ -1330,6 +1312,15 @@ const createPrismaMock = <P>(
   })
 
   client['$getInternalState'] = () => data
+
+  const originalData = deepCopy(data);
+  const originalManyToManyData = deepCopy(manyToManyData);
+
+  client['$reset'] = () => {
+    data = deepCopy(originalData);
+    manyToManyData = deepCopy(originalManyToManyData);
+    ResetDefaults()
+  };
 
   // @ts-ignore
   return client
