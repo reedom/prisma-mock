@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client"
+import { DMMF } from '@prisma/generator-helper';
 import { mockDeep } from "jest-mock-extended"
 import HandleDefault, { ResetDefaults } from "./defaults"
 import { shallowCompare } from "./utils/shallowCompare"
@@ -73,13 +74,14 @@ export type MockPrismaOptions = {
 
 const createPrismaMock = <P>(
   data: PrismaMockData<P> = {},
+  datamodel?: DMMF.Datamodel,
   client = mockDeep<P>(),
   options: MockPrismaOptions = {
     caseInsensitive: false,
   }
 ): P => {
-  const datamodel = Prisma.dmmf.datamodel;
-  const manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
+  let manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
+  datamodel = datamodel ?? Prisma.dmmf.datamodel;
 
   // let data = options.data || {}
   // const datamodel = options.datamodel || Prisma.dmmf.datamodel

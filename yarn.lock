@@ -572,6 +572,13 @@
     "@prisma/engines-version" "5.11.0-15.efd2449663b3d73d637ea1fd226bafbcf45b3102"
     "@prisma/get-platform" "5.11.0"
 
+"@prisma/generator-helper@^5.11.0":
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-5.11.0.tgz#43919d75d38939001b22dee1a57040a9a7e5f254"
+  integrity sha512-oK25sTb2q2TPN7OipiU5xkCpDPNvdWvmFgU9UmmPr8uEt2CdwDjxiWonULgwd6YfqnCOLNpLq0wBIONjelaVMg==
+  dependencies:
+    "@prisma/debug" "5.11.0"
+
 "@prisma/get-platform@5.11.0":
   version "5.11.0"
   resolved "https://registry.yarnpkg.com/@prisma/get-platform/-/get-platform-5.11.0.tgz#19a768127b1712c27f5dec8a0a79a4c9675829eb"
