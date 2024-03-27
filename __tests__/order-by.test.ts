@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { PrismaClientValidationError } from "@prisma/client/runtime"
+import { PrismaClientValidationError } from "@prisma/client/runtime/library"
 import createPrismaClient from "./createPrismaClient"
 
 
