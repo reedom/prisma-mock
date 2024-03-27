@@ -216,7 +216,7 @@ const createPrismaMock = <P>(
         throw new Prisma.PrismaClientValidationError(
           `Argument orderBy of needs exactly one argument, but you provided ${keys.join(
             " and "
-          )}. Please choose one.`
+          )}. Please choose one.`, { clientVersion: Prisma.prismaVersion.client }
         )
       }
       const incl = includes({
