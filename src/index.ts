@@ -99,7 +99,7 @@ const createPrismaMock = <P>(
   ) => {
 
     const c = getCamelCase(model.name)
-    const idFields = model.idFields || model.primaryKey?.fields
+    const idFields = /*model.idFields ||*/ model.primaryKey?.fields
 
     const removeId = (ids: readonly string[]) => {
       const id = ids.join("_")
@@ -710,7 +710,7 @@ const createPrismaMock = <P>(
             }
             return res.length > 0
           }
-          const idFields = model.idFields || model.primaryKey?.fields
+          const idFields = /* model.idFields || */ model.primaryKey?.fields
           if (idFields?.length > 1) {
             if (child === idFields.join("_")) {
               return shallowCompare(item, filter)
