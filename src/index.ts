@@ -65,11 +65,6 @@ const throwKnownError = (message: string, { code = "P2025", meta }: { code?: str
   throw error
 }
 
-export type PrismaMock<P> = P & {
-  $getInternalState: () => any,
-  $reset: () => void,
-}
-
 export type MockPrismaOptions = {
   caseInsensitive?: boolean
   // datamodel?: Prisma.DMMF.Datamodel
@@ -83,8 +78,8 @@ const createPrismaMock = <P>(
   options: MockPrismaOptions = {
     caseInsensitive: false,
   }
-): PrismaMock<P> => {
-  let manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
+): P => {
+  const manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
 
   // let data = options.data || {}
   // const datamodel = options.datamodel || Prisma.dmmf.datamodel
@@ -1308,17 +1303,6 @@ const createPrismaMock = <P>(
   })
 
   client['$getInternalState'] = () => data
-
-  const original = {
-    data: deepCopy(data),
-    manyToMany: deepCopy(manyToManyData),
-  }
-
-  client['$reset'] = () => {
-    data = original.data
-    manyToManyData = original.manyToMany;
-    ResetDefaults()
-  };
 
   // @ts-ignore
   return client
