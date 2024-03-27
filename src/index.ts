@@ -34,7 +34,7 @@ type CreateArgs = any
 function IsFieldDefault(
   f:
     | Prisma.DMMF.FieldDefault
-    | Prisma.DMMF.FieldDefaultScalar[]
+    | readonly Prisma.DMMF.FieldDefaultScalar[]
     | Prisma.DMMF.FieldDefaultScalar
 ): f is Prisma.DMMF.FieldDefault {
   return (f as Prisma.DMMF.FieldDefault).name !== undefined
@@ -78,13 +78,13 @@ export type MockPrismaOptions = {
 
 const createPrismaMock = <P>(
   data: PrismaMockData<P> = {},
-  datamodel = Prisma.dmmf.datamodel,
   client = mockDeep<P>(),
   options: MockPrismaOptions = {
     caseInsensitive: false,
   }
 ): PrismaMock<P> => {
   let manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
+  const datamodel = Prisma.dmmf.datamodel;
 
   // let data = options.data || {}
   // const datamodel = options.datamodel || Prisma.dmmf.datamodel
@@ -104,9 +104,9 @@ const createPrismaMock = <P>(
   ) => {
 
     const c = getCamelCase(model.name)
-    const idFields = model.idFields || model.primaryKey?.fields
+    const idFields = /*model.idFields ||*/ model.primaryKey?.fields
 
-    const removeId = (ids: string[]) => {
+    const removeId = (ids: readonly string[]) => {
       const id = ids.join("_")
       data = {
         ...data,
@@ -221,7 +221,7 @@ const createPrismaMock = <P>(
         throw new Prisma.PrismaClientValidationError(
           `Argument orderBy of needs exactly one argument, but you provided ${keys.join(
             " and "
-          )}. Please choose one.`
+          )}. Please choose one.`, { clientVersion: Prisma.prismaVersion.client }
         )
       }
       const incl = includes({
@@ -715,7 +715,7 @@ const createPrismaMock = <P>(
             }
             return res.length > 0
           }
-          const idFields = model.idFields || model.primaryKey?.fields
+          const idFields = /* model.idFields || */ model.primaryKey?.fields
           if (idFields?.length > 1) {
             if (child === idFields.join("_")) {
               return shallowCompare(item, filter)

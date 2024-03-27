@@ -56,11 +56,11 @@ test("Select", async () => {
   // This is 0 when it should be 1
   expect(documents.length).toBe(1)
   expect(documents).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "name": "123",
-    "participants": Array [
-      Object {
+    "participants": [
+      {
         "accountId": 1,
         "clicks": null,
         "deleted": false,
@@ -103,11 +103,11 @@ test("Create", async () => {
   expect(documents.length).toBe(1)
   expect(documents[0].participants.length).toBe(1)
   expect(documents).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "name": "123",
-    "participants": Array [
-      Object {
+    "participants": [
+      {
         "accountId": null,
         "clicks": null,
         "deleted": false,
@@ -203,10 +203,10 @@ test("set", async () => {
   })
 
   expect(document1).toMatchInlineSnapshot(`
-Object {
+{
   "name": "123",
-  "participants": Array [
-    Object {
+  "participants": [
+    {
       "accountId": null,
       "clicks": null,
       "deleted": false,
@@ -216,7 +216,7 @@ Object {
       "sort": null,
       "uniqueField": "1",
     },
-    Object {
+    {
       "accountId": null,
       "clicks": null,
       "deleted": false,
@@ -250,10 +250,10 @@ Object {
   })
 
   expect(document2).toMatchInlineSnapshot(`
-Object {
+{
   "name": "123",
-  "participants": Array [
-    Object {
+  "participants": [
+    {
       "accountId": null,
       "clicks": null,
       "deleted": false,
@@ -285,9 +285,9 @@ Object {
   })
 
   expect(document3).toMatchInlineSnapshot(`
-Object {
+{
   "name": "123",
-  "participants": Array [],
+  "participants": [],
 }
 `)
 })
@@ -324,11 +324,11 @@ xtest("connectOrCreate create", async () => {
   expect(documents.length).toBe(1)
   expect(documents[0].participants.length).toBe(1)
   expect(documents).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "name": "123",
-    "participants": Array [
-      Object {
+    "participants": [
+      {
         "accountId": null,
         "clicks": null,
         "deleted": false,
