@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { PrismaClient } from "@prisma/client"
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime"
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
 import createPrismaClient from "./createPrismaClient"
 
 describe("PrismaClient", () => {
@@ -161,7 +161,7 @@ describe("PrismaClient", () => {
       },
     })
     expect(res).toMatchInlineSnapshot(`
-Object {
+{
   "accountId": null,
   "clicks": null,
   "deleted": false,
@@ -201,7 +201,7 @@ Object {
     })
     const users = await client.user.findMany()
     expect(res).toMatchInlineSnapshot(`
-Object {
+{
   "accountId": 1,
   "clicks": null,
   "deleted": false,
@@ -213,8 +213,8 @@ Object {
 }
 `)
     expect(users).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "accountId": 1,
     "clicks": null,
     "deleted": false,
@@ -224,7 +224,7 @@ Array [
     "sort": null,
     "uniqueField": "first",
   },
-  Object {
+  {
     "accountId": 1,
     "clicks": null,
     "deleted": false,
@@ -263,8 +263,8 @@ Array [
     const users = await client.user.findMany()
 
     expect(users).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "accountId": 1,
     "clicks": null,
     "deleted": false,
@@ -460,13 +460,13 @@ Array [
     })
 
     expect(users).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "accountId": null,
     "clicks": null,
     "deleted": false,
-    "guestOf": Array [
-      Object {
+    "guestOf": [
+      {
         "id": 1,
         "name": "New account",
         "sort": null,
