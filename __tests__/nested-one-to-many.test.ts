@@ -23,12 +23,12 @@ describe('Create', () => {
     const users = await client.user.findMany()
     expect(users.length).toBe(1)
     expect(account).toMatchInlineSnapshot(`
-{
+Object {
   "id": 1,
   "name": null,
   "sort": null,
-  "users": [
-    {
+  "users": Array [
+    Object {
       "accountId": 1,
       "clicks": null,
       "deleted": false,
@@ -63,12 +63,12 @@ describe('Create', () => {
       }
     })
     expect(account).toMatchInlineSnapshot(`
-{
+Object {
   "id": 1,
   "name": null,
   "sort": null,
-  "users": [
-    {
+  "users": Array [
+    Object {
       "accountId": 1,
       "clicks": null,
       "deleted": false,
@@ -78,7 +78,7 @@ describe('Create', () => {
       "sort": null,
       "uniqueField": "user",
     },
-    {
+    Object {
       "accountId": 1,
       "clicks": null,
       "deleted": false,
@@ -116,11 +116,11 @@ describe('Create', () => {
       }
     })
     expect(answer).toMatchInlineSnapshot(`
-{
+Object {
   "id": 1,
   "title": "Title",
-  "users": [
-    {
+  "users": Array [
+    Object {
       "answerId": 1,
       "userId": 1,
       "value": null,
@@ -209,12 +209,12 @@ describe("Update", () => {
       }
     })
     expect(answer).toMatchInlineSnapshot(`
-{
+Object {
   "id": 1,
   "name": null,
   "sort": null,
-  "users": [
-    {
+  "users": Array [
+    Object {
       "accountId": 1,
       "clicks": null,
       "deleted": false,
@@ -265,12 +265,12 @@ describe("Update", () => {
       }
     })
     expect(answer).toMatchInlineSnapshot(`
-{
+Object {
   "id": 1,
   "name": null,
   "sort": null,
-  "users": [
-    {
+  "users": Array [
+    Object {
       "accountId": 1,
       "clicks": null,
       "deleted": false,
@@ -326,8 +326,8 @@ describe("Update", () => {
       }
     })
     expect(account.users).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "accountId": 1,
     "clicks": null,
     "deleted": false,
@@ -380,8 +380,8 @@ describe("Update", () => {
       }
     })
     expect(account.users).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "accountId": 1,
     "clicks": null,
     "deleted": false,
@@ -437,8 +437,8 @@ describe("Update", () => {
     })
     expect(account.users.length).toEqual(1)
     expect(account.users).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "accountId": 1,
     "clicks": null,
     "deleted": false,
@@ -492,8 +492,8 @@ describe("Update", () => {
     })
     expect(account.users.length).toEqual(1)
     expect(account.users).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "accountId": 1,
     "clicks": null,
     "deleted": false,
@@ -527,8 +527,8 @@ test("Select", async () => {
   })
   expect(accounts).toHaveLength(1)
   expect(accounts).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "id": 1,
     "name": "A",
     "sort": null,

@@ -41,31 +41,31 @@ describe("PrismaClient $getInternalState", () => {
     const client = await createPrismaClient(data)
 
     expect(client.$getInternalState()).toMatchInlineSnapshot(`
-{
-  "account": [],
-  "answers": [
-    {
+Object {
+  "account": Array [],
+  "answers": Array [
+    Object {
       "id": 1,
       "title": "Answer",
     },
-    {
+    Object {
       "id": 2,
       "title": "Answer",
     },
-    {
+    Object {
       "id": 3,
       "title": "Answer",
     },
   ],
-  "document": [],
-  "element": [],
-  "pet": [],
-  "post": [],
-  "stripe": [],
-  "toy": [],
-  "transaction": [],
-  "user": [
-    {
+  "document": Array [],
+  "element": Array [],
+  "pet": Array [],
+  "post": Array [],
+  "stripe": Array [],
+  "toy": Array [],
+  "transaction": Array [],
+  "user": Array [
+    Object {
       "accountId": null,
       "clicks": null,
       "deleted": false,
@@ -76,7 +76,7 @@ describe("PrismaClient $getInternalState", () => {
       "uniqueField": "user1",
     },
   ],
-  "userAnswers": [],
+  "userAnswers": Array [],
 }
 `)
   })
@@ -91,31 +91,31 @@ describe("PrismaClient $getInternalState", () => {
     })
 
     expect(client.$getInternalState()).toMatchInlineSnapshot(`
-{
-  "account": [],
-  "answers": [
-    {
+Object {
+  "account": Array [],
+  "answers": Array [
+    Object {
       "id": 1,
       "title": "Answer",
     },
-    {
+    Object {
       "id": 2,
       "title": "Answer",
     },
-    {
+    Object {
       "id": 3,
       "title": "Answer",
     },
   ],
-  "document": [],
-  "element": [],
-  "pet": [],
-  "post": [],
-  "stripe": [],
-  "toy": [],
-  "transaction": [],
-  "user": [
-    {
+  "document": Array [],
+  "element": Array [],
+  "pet": Array [],
+  "post": Array [],
+  "stripe": Array [],
+  "toy": Array [],
+  "transaction": Array [],
+  "user": Array [
+    Object {
       "accountId": null,
       "clicks": null,
       "deleted": false,
@@ -126,8 +126,8 @@ describe("PrismaClient $getInternalState", () => {
       "uniqueField": "user1",
     },
   ],
-  "userAnswers": [
-    {
+  "userAnswers": Array [
+    Object {
       "answerId": 1,
       "userId": 1,
       "value": null,
@@ -143,18 +143,18 @@ describe("PrismaClient $getInternalState", () => {
     await client.answers.deleteMany({})
 
     expect(client.$getInternalState()).toMatchInlineSnapshot(`
-{
-  "account": [],
-  "answers": [],
-  "document": [],
-  "element": [],
-  "pet": [],
-  "post": [],
-  "stripe": [],
-  "toy": [],
-  "transaction": [],
-  "user": [
-    {
+Object {
+  "account": Array [],
+  "answers": Array [],
+  "document": Array [],
+  "element": Array [],
+  "pet": Array [],
+  "post": Array [],
+  "stripe": Array [],
+  "toy": Array [],
+  "transaction": Array [],
+  "user": Array [
+    Object {
       "accountId": null,
       "clicks": null,
       "deleted": false,
@@ -165,7 +165,7 @@ describe("PrismaClient $getInternalState", () => {
       "uniqueField": "user1",
     },
   ],
-  "userAnswers": [],
+  "userAnswers": Array [],
 }
 `)
   })
@@ -180,31 +180,31 @@ describe("PrismaClient $getInternalState", () => {
     })
 
     expect(client.$getInternalState()).toMatchInlineSnapshot(`
-{
-  "account": [],
-  "answers": [
-    {
+Object {
+  "account": Array [],
+  "answers": Array [
+    Object {
       "id": 1,
       "title": "Answer",
     },
-    {
+    Object {
       "id": 2,
       "title": "Answer",
     },
-    {
+    Object {
       "id": 3,
       "title": "Answer",
     },
   ],
-  "document": [],
-  "element": [],
-  "pet": [],
-  "post": [],
-  "stripe": [],
-  "toy": [],
-  "transaction": [],
-  "user": [
-    {
+  "document": Array [],
+  "element": Array [],
+  "pet": Array [],
+  "post": Array [],
+  "stripe": Array [],
+  "toy": Array [],
+  "transaction": Array [],
+  "user": Array [
+    Object {
       "accountId": null,
       "clicks": null,
       "deleted": false,
@@ -215,7 +215,7 @@ describe("PrismaClient $getInternalState", () => {
       "uniqueField": "user1",
     },
   ],
-  "userAnswers": [],
+  "userAnswers": Array [],
 }
 `)
   })

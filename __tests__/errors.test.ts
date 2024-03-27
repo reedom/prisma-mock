@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime"
 import createPrismaClient from "./createPrismaClient"
 
 const data = {
@@ -33,7 +33,7 @@ test("findFirstOrThrow", async () => {
     where: { id: 1 },
   })
   expect(accounts).toMatchInlineSnapshot(`
-{
+Object {
   "id": 1,
   "name": "sadfsdf",
   "sort": null,
@@ -73,7 +73,7 @@ test("delete", async () => {
       "An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist."
     )
     expect(e.meta).toMatchInlineSnapshot(`
-{
+Object {
   "cause": "Record to delete does not exist.",
 }
 `)
@@ -99,7 +99,7 @@ test("update", async () => {
       "An operation failed because it depends on one or more records that were required but not found. Record to update not found."
     )
     expect(e.meta).toMatchInlineSnapshot(`
-{
+Object {
   "cause": "Record to update not found.",
 }
 `)
@@ -143,8 +143,8 @@ test("Argument uniqueField is not unique.", async () => {
       "Unique constraint failed on the fields: (`uniqueField`)"
     )
     expect(e.meta).toMatchInlineSnapshot(`
-{
-  "target": [
+Object {
+  "target": Array [
     "uniqueField",
   ],
 }

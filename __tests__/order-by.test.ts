@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { PrismaClientValidationError } from "@prisma/client/runtime/library"
+import { PrismaClientValidationError } from "@prisma/client/runtime"
 import createPrismaClient from "./createPrismaClient"
 
 
@@ -210,20 +210,20 @@ test("Deep nested orderBy", async () => {
     ]
   })
   expect(users).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "e_id": 1,
     "json": null,
     "userId": 1,
     "value": "2",
   },
-  {
+  Object {
     "e_id": 2,
     "json": null,
     "userId": 1,
     "value": "1",
   },
-  {
+  Object {
     "e_id": 3,
     "json": null,
     "userId": 2,

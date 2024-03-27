@@ -144,7 +144,7 @@ describe("PrismaClient where", () => {
           expect(elements).toMatchSnapshot()
           // expect(element).toEqual([data.element[0]]);
         })
-
+      
         test("in", async () => {
           const client = await createPrismaClient(data, {
             caseInsensitive,
@@ -158,7 +158,7 @@ describe("PrismaClient where", () => {
           expect(accounts.length).toEqual(2)
           // expect(account).toEqual([data.account[0], data.account[2]]);
         })
-
+      
         test("in (nested)", async () => {
           const client = await createPrismaClient(data, {
             caseInsensitive,
@@ -307,7 +307,7 @@ describe("PrismaClient where", () => {
             // expect(account).toEqual([data.account[1]]);
           })
 
-
+          
           test("contains", async () => {
             const accounts = await client.account.findMany({
               where: {
@@ -480,13 +480,13 @@ describe("PrismaClient where", () => {
         },
       })
       expect(accounts).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "id": 1,
     "name": "A",
     "sort": null,
   },
-  {
+  Object {
     "id": 3,
     "name": "C",
     "sort": null,
@@ -506,13 +506,13 @@ describe("PrismaClient where", () => {
         },
       })
       expect(accounts).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "id": 1,
     "name": "A",
     "sort": null,
   },
-  {
+  Object {
     "id": 2,
     "name": "B",
     "sort": null,
@@ -535,8 +535,8 @@ describe("PrismaClient where", () => {
         },
       })
       expect(accounts).toMatchInlineSnapshot(`
-[
-  {
+Array [
+  Object {
     "id": 3,
     "name": "C",
     "sort": null,

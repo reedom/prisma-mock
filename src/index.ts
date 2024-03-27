@@ -34,7 +34,7 @@ type CreateArgs = any
 function IsFieldDefault(
   f:
     | Prisma.DMMF.FieldDefault
-    | readonly Prisma.DMMF.FieldDefaultScalar[]
+    | Prisma.DMMF.FieldDefaultScalar[]
     | Prisma.DMMF.FieldDefaultScalar
 ): f is Prisma.DMMF.FieldDefault {
   return (f as Prisma.DMMF.FieldDefault).name !== undefined
@@ -104,9 +104,9 @@ const createPrismaMock = <P>(
   ) => {
 
     const c = getCamelCase(model.name)
-    const idFields = /*model.idFields ||*/ model.primaryKey?.fields
+    const idFields = model.idFields || model.primaryKey?.fields
 
-    const removeId = (ids: readonly string[]) => {
+    const removeId = (ids: string[]) => {
       const id = ids.join("_")
       data = {
         ...data,
@@ -221,7 +221,7 @@ const createPrismaMock = <P>(
         throw new Prisma.PrismaClientValidationError(
           `Argument orderBy of needs exactly one argument, but you provided ${keys.join(
             " and "
-          )}. Please choose one.`, { clientVersion: Prisma.prismaVersion.client }
+          )}. Please choose one.`
         )
       }
       const incl = includes({
@@ -715,7 +715,7 @@ const createPrismaMock = <P>(
             }
             return res.length > 0
           }
-          const idFields = /* model.idFields || */ model.primaryKey?.fields
+          const idFields = model.idFields || model.primaryKey?.fields
           if (idFields?.length > 1) {
             if (child === idFields.join("_")) {
               return shallowCompare(item, filter)
