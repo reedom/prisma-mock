@@ -73,12 +73,12 @@ export type MockPrismaOptions = {
 
 const createPrismaMock = <P>(
   data: PrismaMockData<P> = {},
-  datamodel = Prisma.dmmf.datamodel,
   client = mockDeep<P>(),
   options: MockPrismaOptions = {
     caseInsensitive: false,
   }
 ): P => {
+  const datamodel = Prisma.dmmf.datamodel;
   const manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
 
   // let data = options.data || {}
