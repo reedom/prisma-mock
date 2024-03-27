@@ -34,7 +34,7 @@ type CreateArgs = any
 function IsFieldDefault(
   f:
     | Prisma.DMMF.FieldDefault
-    | Prisma.DMMF.FieldDefaultScalar[]
+    | readonly Prisma.DMMF.FieldDefaultScalar[]
     | Prisma.DMMF.FieldDefaultScalar
 ): f is Prisma.DMMF.FieldDefault {
   return (f as Prisma.DMMF.FieldDefault).name !== undefined
@@ -101,7 +101,7 @@ const createPrismaMock = <P>(
     const c = getCamelCase(model.name)
     const idFields = model.idFields || model.primaryKey?.fields
 
-    const removeId = (ids: string[]) => {
+    const removeId = (ids: readonly string[]) => {
       const id = ids.join("_")
       data = {
         ...data,
