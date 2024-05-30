@@ -84,7 +84,9 @@ const createPrismaMock = <P>(
   options: MockPrismaOptions = {
     caseInsensitive: false,
   }
-): PrismaMock<P> => {
+): PrismaMock<P & {
+  $getInternalState: () => Required<PrismaMockData<P>>
+}> => {
   let manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
   datamodel = datamodel ?? Prisma.dmmf.datamodel;
 

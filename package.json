@@ -1,9 +1,12 @@
 {
   "name": "prisma-mock",
-  "version": "0.10.0",
+  "version": "0.10.2",
   "description": "Mock prisma for unit testing database",
   "main": "lib/index.js",
-  "repository": "https://github.com/demonsters/prisma-mock",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demonsters/prisma-mock.git"
+  },
   "license": "MIT",
   "types": "lib/",
   "files": [
@@ -21,7 +24,7 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
-    "preversion": "tsc",
+    "preversion": "jest && tsc",
     "build": "tsc",
     "test": "jest",
     "watch": "tsc --watch",
@@ -32,6 +35,6 @@
   },
   "dependencies": {
     "@prisma/generator-helper": "^5.11.0",
-    "jest-mock-extended": "^3.0.5"
+    "jest-mock-extended": "^3.0.6"
   }
 }
