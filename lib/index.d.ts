@@ -18,5 +18,7 @@ export type PrismaMock<P> = P & {
 export type MockPrismaOptions = {
     caseInsensitive?: boolean;
 };
-declare const createPrismaMock: <P>(data?: PrismaMockData<P>, datamodel?: DMMF.Datamodel, client?: import("jest-mock-extended").DeepMockProxy<P>, options?: MockPrismaOptions) => PrismaMock<P>;
+declare const createPrismaMock: <P>(data?: PrismaMockData<P>, datamodel?: DMMF.Datamodel, client?: import("jest-mock-extended").DeepMockProxy<P>, options?: MockPrismaOptions) => PrismaMock<P & {
+    $getInternalState: () => Required<PrismaMockData<P>>;
+}>;
 export default createPrismaMock;
