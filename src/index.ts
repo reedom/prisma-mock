@@ -34,11 +34,11 @@ type CreateArgs = any
 
 function IsFieldDefault(
   f:
-    | Prisma.DMMF.FieldDefault
+    | DMMF.FieldDefault
     | readonly Prisma.DMMF.FieldDefaultScalar[]
-    | Prisma.DMMF.FieldDefaultScalar
-): f is Prisma.DMMF.FieldDefault {
-  return (f as Prisma.DMMF.FieldDefault).name !== undefined
+    | DMMF.FieldDefaultScalar
+): f is DMMF.FieldDefault {
+  return (f as DMMF.FieldDefault).name !== undefined
 }
 
 function isDefinedWithValue<T extends  object>(v: T, key: string): boolean {
@@ -107,7 +107,7 @@ const createPrismaMock = <P>(
   }
 
   const removeMultiFieldIds = (
-    model: Prisma.DMMF.Model,
+    model: DMMF.Model,
     data: PrismaMockData<P>
   ) => {
 
@@ -140,7 +140,7 @@ const createPrismaMock = <P>(
     return data
   }
 
-  const getFieldRelationshipWhere = (item: any, field: Prisma.DMMF.Field, model: Prisma.DMMF.Model) => {
+  const getFieldRelationshipWhere = (item: any, field: DMMF.Field, model: DMMF.Model) => {
     if (field.relationFromFields.length === 0) {
       const joinmodel = datamodel.models.find((model) => {
         return model.name === field.type
@@ -172,7 +172,7 @@ const createPrismaMock = <P>(
     }
   }
 
-  const getJoinField = (field: Prisma.DMMF.Field) => {
+  const getJoinField = (field: DMMF.Field) => {
     const joinmodel = datamodel.models.find((model) => {
       return model.name === field.type
     })
@@ -213,7 +213,7 @@ const createPrismaMock = <P>(
   // client["$disconnect"] = async () => { }
   // client["$use"] = async () => { }
 
-  const Delegate = (prop: string, model: Prisma.DMMF.Model) => {
+  const Delegate = (prop: string, model: DMMF.Model) => {
     const sortFunc = (orderBy) => (a, b) => {
       if (Array.isArray(orderBy)) {
         for (const order of orderBy) {
