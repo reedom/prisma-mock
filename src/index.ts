@@ -92,7 +92,7 @@ const createPrismaMock = <P>(
   $getInternalState: () => Required<PrismaMockData<P>>
 }> => {
   let manyToManyData: { [relationName: string]: Array<{ [type: string]: Item }> } = {}
-  datamodel = datamodel ?? Prisma.dmmf.datamodel;
+  datamodel = datamodel ?? { ...Prisma.dmmf.datamodel, indexes: [] };
 
   // let data = options.data || {}
   // const datamodel = options.datamodel || Prisma.dmmf.datamodel
