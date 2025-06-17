@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { DMMF } from '@prisma/generator-helper';
 
 import { PrismaMockData } from "..";
 
@@ -7,7 +7,7 @@ import Cuid, { ResetCuid } from "./cuid";
 import Now from "./now";
 import Uuid, { ResetUuid } from "./uuid"
 
-type FieldDefault = Prisma.DMMF.FieldDefault;
+type FieldDefault = DMMF.FieldDefault;
 
 // const registry = new Map<string, (string, Prisma.DMMF.Field, PrismaMockData) => any>();
 const registry = new Map();
@@ -18,7 +18,7 @@ registry.set("now", Now);
 
 export default function HandleDefault<P>(
   prop: string,
-  field: Prisma.DMMF.Field,
+  field: DMMF.Field,
   data: PrismaMockData<P>
 ): any {
   const key = (field.default as FieldDefault).name;
